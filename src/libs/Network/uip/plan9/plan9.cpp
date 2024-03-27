@@ -629,6 +629,7 @@ bool Plan9::process(Message* request, Message* response)
         CHECK(request->size == sizeof (request->Tread) && request->Tread.count <= IOUNIT, P9_EBADMSG);
         CHECK(entry = get_entry(request->fid));
         RESPONSE(Rread);
+        response->Rread.count = 0;
 
         if (entry->second.type == QTDIR) {
             Dir dir(entry->first);
